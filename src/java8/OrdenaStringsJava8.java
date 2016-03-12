@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class OrdenaStringsJava8 {
 
@@ -45,6 +46,18 @@ public class OrdenaStringsJava8 {
 		
 		//Refactor Comparator para Lambda Fase 3 
 		palavras.sort((String s1, String s2) -> Integer.compare(s1.length(), s2.length())) ;
+
+		//Refactor Comparator para Lambda Fase 4 
+		palavras.sort(Comparator.comparing(s -> s.length())) ;
+		
+		//Refactor Comparator para Lambda Fase 5 
+		palavras.sort(Comparator.comparing(String::length)) ;
+		
+		//Igual ao Refactor Comparator para Lambda Fase 4 --> Somente demostracao de passos 
+		Function<String, Integer> funcao = s -> s.length();
+		Comparator<String> comparador = Comparator.comparing(funcao);
+		palavras.sort(comparador) ;
+		
 		
 		//Chamada comentada utilizando classe Utilizando classe anonima
 		//Consumer<String> consumer = new ImprimeNaLinha();
@@ -64,6 +77,8 @@ public class OrdenaStringsJava8 {
 		//Refactor Lambda Fase 3
 		palavras.forEach(s ->  System.out.println(s));
 
+		//Refactor Lambda Fase 4
+		palavras.forEach(System.out::printf);
 	}
 }
 
